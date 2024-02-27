@@ -117,9 +117,8 @@ let botonAgregarAnimal = document.getElementById("btnRegistrar");
         return;
     }
 
-    //Mostrar la instancia en la tabla y reproducir el sonido(en prueba)
+    //Mostrar la instancia en la tabla
     MostrarEnTabla(animal);
-    ReproducirSonido(animal);
 
     //Restablecer el formulario a su estado inicial
     resetFormulario();
@@ -138,7 +137,7 @@ function MostrarEnTabla(animal) {
 
   //crear el contenido HTML de la card del animal
   nuevaCard.innerHTML = `
-  <img src="${animal.Img}" class="card-img-top" alt="${animal.Nombre} style="style="max-width: 300px; max-height: 200px; object-fit: cover;">
+  <img src="${animal.Img}" class="card-img-top" alt="${animal.Nombre} style="max-width: 300px; max-height: 200px; object-fit: cover;" data-toggle="modal" data-target="#exampleModal">
   <div class="card-body text-center">
     <img src="./assets/imgs/audio.svg" alt="Audio" class="w-25">
   </div>
@@ -146,19 +145,28 @@ function MostrarEnTabla(animal) {
 
   //agregar la nueva card al contenedor de animales
   contenedorAnimales.append(nuevaCard);
+
+  //agregar evento clic para abrir la ventana modal
+  let modalImagen = nuevaCard.querySelector("img");
+  modalImagen.addEventListener("click", function () {
+    mostrarDetalleModal(animal);
+  });
 }
 
-//Función para reproducir el sonido del animal(en prueba)
-function ReproducirSonido(animal) {
-  //verificar si la instancia del animal tiene un sonido definido
-  if (animal.Sonido) {
-    // Crear un nuevo elemento de audio con la ruta del sonido y reproducirlo
-    let audio = new Audio(animal.Sonido);
-    audio.play();
-  } else {
-    //si no hay sonido definido, mostrar un mensaje de alerta
-    //alert(`No hay sonido definido para ${animal.Nombre}.`);
-  }
+//Función para mostrar el detalle del animal en la ventana modal
+function mostrarDetalleModal(animal) {
+  // Obtener elementos de la ventana modal
+  let modalImg = document.getElementById("modalImagen");
+  let modalEdad = document.getElementById("modalEdad");
+  let modalComentarios = document.getElementById("modalComentarios");
+
+  //actualizar contenido de la ventana modal
+  modalImg.src = animal.Img;
+  modalEdad.textContent = `\n Edad: ${animal.Edad}`;
+  modalComentarios.textContent = `Comentarios: ${animal.Comentarios}`;
+
+  //mostrar la ventana modal
+  $("#exampleModal").modal("show");
 }
 
 //Función para restablecer el formulario
@@ -178,7 +186,7 @@ function resetFormulario() {
 // let vistaPreviaAnimal = document.getElementById("preview");
 // let botonAgregarAnimal = document.getElementById("btnRegistrar");
 
-// // IIFE para encapsular el código principal y realizar la consulta asíncrona
+// //IIFE para encapsular el código principal y realizar la consulta asíncrona
 // (async function () {
 //   // Simulación de una consulta asíncrona para obtener las imágenes
 //   async function obtenerImagenesAsync() {
@@ -192,23 +200,23 @@ function resetFormulario() {
 //           Aguila: "./assets/imgs/Aguila.png",
 //         };
 //         resolve(imagenesAnimales);
-//       }, 1000); // Simulamos una demora de 1 segundo
+//       }, 1000); //simulamos una demora de 1 segundo
 //     });
 //   }
 // })();
 
-// // Agrega un evento de cambio al elemento select con id "animal"
+// //Agrega un evento de cambio al elemento select con id "animal"
 // inputAnimal.addEventListener("change", function () {
-//   // Obtiene el valor seleccionado en el select
+//   //obtiene el valor seleccionado en el select
 //   let animalSeleccionado = inputAnimal.value;
 
-//   // Actualiza la vista previa según el animal seleccionado
+//   //actualiza la vista previa según el animal seleccionado
 //   mostrarVistaPrevia(animalSeleccionado);
 // });
 
-// // Función para mostrar la vista previa según el animal seleccionado
+// //Función para mostrar la vista previa según el animal seleccionado
 // function mostrarVistaPrevia(animalSeleccionado) {
-//   // Define un objeto que mapea el nombre del animal con la ruta de la imagen
+//   //Define un objeto que mapea el nombre del animal con la ruta de la imagen
 //   const imagenesAnimales = {
 //     Leon: "./assets/imgs/Leon.png",
 //     Lobo: "./assets/imgs/Lobo.jpg",
@@ -217,29 +225,29 @@ function resetFormulario() {
 //     Aguila: "./assets/imgs/Aguila.png",
 //   };
 
-//   // Obtiene la ruta de la imagen según el animal seleccionado
+//   //obtiene la ruta de la imagen según el animal seleccionado
 //   let rutaImagen = imagenesAnimales[animalSeleccionado];
 
-//   // Actualiza la vista previa con la nueva imagen
+//   //actualiza la vista previa con la nueva imagen
 //   vistaPreviaAnimal.style.backgroundImage = `url(${rutaImagen})`;
 // }
 
 // //------------------------------------------
 
-// // Escuchar el evento de clic en el botón de agregar
+// //Escuchar el evento de clic en el botón de agregar
 // botonAgregarAnimal.addEventListener("click", function () {
 //   // Obtener valores del formulario
 //   let nombreAnimal = inputAnimal.value;
 //   let edadAnimal = inputEdadAnimal.value;
 //   let comentariosAnimal = inputComentarioAniamal.value;
 
-//   // Validar que se hayan ingresado todos los datos
+//   //validar que se hayan ingresado todos los datos
 //   if (!nombreAnimal || !edadAnimal || !comentariosAnimal) {
 //     alert("Por favor, complete todos los campos del formulario.");
 //     return;
 //   }
 
-//   // Crear instancia según el tipo de animal seleccionado
+//   //crear instancia según el tipo de animal seleccionado
 //   let animal;
 //   switch (nombreAnimal) {
 //     case "Leon":
@@ -297,21 +305,21 @@ function resetFormulario() {
 //       return;
 //   }
 
-//   // Mostrar la instancia en la tabla y reproducir el sonido
+//   //mostrar la instancia en la tabla y reproducir el sonido
 //   MostrarEnTabla(animal);
 //   ReproducirSonido(animal);
 // });
 
-// // Función para mostrar la instancia en la tabla
+// //Función para mostrar la instancia en la tabla
 // function MostrarEnTabla(animal) {
-//   // Obtener el contenedor de animales
+//   //obtener el contenedor de animales
 //   let contenedorAnimales = document.getElementById("Animales");
 
-//   // Crear un elemento div para la nueva card del animal
+//   //crear un elemento div para la nueva card del animal
 //   let nuevaCard = document.createElement("div");
 //   nuevaCard.classList.add("card", "participante", "m-2", "bg-secondary");
 
-//   // Crear el contenido HTML de la card del animal
+//   //crear el contenido HTML de la card del animal
 //   nuevaCard.innerHTML = `
 //   <img src="${animal.Img}" class="card-img-top" alt="${animal.Nombre} style="style="max-width: 300px; max-height: 200px; object-fit: cover;">
 //   <div class="card-body text-center">
@@ -319,21 +327,21 @@ function resetFormulario() {
 //   </div>
 //   `;
 
-//   // Agregar la nueva card al contenedor de animales
+//   //agregar la nueva card al contenedor de animales
 //   contenedorAnimales.append(nuevaCard);
 // }
 
 // //-------------------------
 
-// // Función para reproducir el sonido del animal
+// //Función para reproducir el sonido del animal
 // function ReproducirSonido(animal) {
-//   // Verificar si la instancia del animal tiene un sonido definido
+//   //verificar si la instancia del animal tiene un sonido definido
 //   if (animal.Sonido) {
-//     // Crear un nuevo elemento de audio con la ruta del sonido y reproducirlo
+//     //crear un nuevo elemento de audio con la ruta del sonido y reproducirlo
 //     let audio = new Audio(animal.Sonido);
 //     audio.play();
 //   } else {
-//     // Si no hay sonido definido, mostrar un mensaje de alerta
+//     //si no hay sonido definido, mostrar un mensaje de alerta
 //     //alert(`No hay sonido definido para ${animal.Nombre}.`);
 //   }
 // }

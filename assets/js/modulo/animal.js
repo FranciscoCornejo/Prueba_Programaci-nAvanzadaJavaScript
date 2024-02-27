@@ -1,4 +1,5 @@
 //Clase Padre: Animal
+// Clase Padre: Animal
 class Animal {
   constructor(nombre, edad, img, comentarios, sonido) {
     this._nombre = nombre;
@@ -7,18 +8,31 @@ class Animal {
     this._comentarios = comentarios;
     this._sonido = sonido;
   }
+
   get Nombre() {
     return this._nombre;
   }
+
   get Edad() {
     return this._edad;
   }
+
   get Img() {
     return this._img;
   }
+
+  get Comentarios() {
+    return this._comentarios;
+  }
+
   set Comentarios(comentarios) {
     this._comentarios = comentarios;
   }
+
+  get Sonido() {
+    return this._sonido;
+  }
+
   set Sonido(sonido) {
     this._sonido = sonido;
   }
