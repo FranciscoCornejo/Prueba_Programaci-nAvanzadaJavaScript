@@ -26,9 +26,10 @@ class Animal {
 
 //Clase Hijo: Leon
 class Leon extends Animal {
-  constructor(nombre, edad, comentarios, sonido, rugido) {
-    super(nombre, edad, "../imgs/leon.png", comentarios, sonido);
-    this._rugido = rugido;
+  constructor(nombre, edad, img, comentarios, sonido, rugido) {
+    super(nombre, edad, img, comentarios, sonido);
+    this._img = "./assets/imgs/Leon.png";
+    this._rugido = "./assets/sounds/Rugido.mp3";
   }
   get Rugido() {
     return this._rugido;
@@ -41,8 +42,9 @@ class Leon extends Animal {
 //Clase Hijo: Lobo
 class Lobo extends Animal {
   constructor(nombre, edad, img, comentarios, sonido, aullido) {
-    super(nombre, edad, "../imgs/lobo.png", comentarios, sonido);
-    this._aullido = aullido;
+    super(nombre, edad, img, comentarios, sonido);
+    this._img = "./assets/imgs/Lobo.jpg";
+    this._aullido = "./assets/sounds/Aullido.mp3";
   }
   get Aullido() {
     return this._aullido;
@@ -55,8 +57,9 @@ class Lobo extends Animal {
 //Clase Hijo: Oso
 class Oso extends Animal {
   constructor(nombre, edad, img, comentarios, sonido, grunido) {
-    super(nombre, edad, "../imgs/oso.png", comentarios, sonido);
-    this._grunido = grunido;
+    super(nombre, edad, img, comentarios, sonido);
+    this._img = "./assets/imgs/Oso.jpg";
+    this._grunido = "./assets/sounds/Grunido.mp3";
   }
   get Grunido() {
     return this._grunido;
@@ -69,8 +72,9 @@ class Oso extends Animal {
 //Clase Hijo: Serpiente
 class Serpiente extends Animal {
   constructor(nombre, edad, img, comentarios, sonido, sisear) {
-    super(nombre, edad, "../imgs/serpiente.png", comentarios, sonido);
-    this._sisear = sisear;
+    super(nombre, edad, img, comentarios, sonido);
+    this._img = "./assets/imgs/Serpiente.jpg";
+    this._sisear = "./assets/sounds/Siseo.mp3";
   }
   get Sisear() {
     return this._sisear;
@@ -83,8 +87,9 @@ class Serpiente extends Animal {
 //Clase Hijo: Aguila
 class Aguila extends Animal {
   constructor(nombre, edad, img, comentarios, sonido, chillar) {
-    super(nombre, edad, "../imgs/aguila.png", comentarios, sonido);
-    this._halar = chillar;
+    super(nombre, edad, img, comentarios, sonido);
+    this._img = "./assets/imgs/Aguila.png";
+    this._halar = "./assets/sounds/Chillido.mp3";
   }
   get Chillar() {
     return this._chillar;
